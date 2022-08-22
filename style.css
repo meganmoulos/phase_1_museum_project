@@ -22,10 +22,6 @@ nav {
     justify-content: center;
 }
 
-#leftContainer {
-    width: 60vw;
-}
-
 #artistName {
     font-weight: bold;
 }
@@ -34,15 +30,15 @@ nav {
     font-style: italic;
 }
 
-#rightContainer {
-    width: 20vw;
-}
-
 #rightMenuList {
     display: flex;
     flex-direction: column;
     list-style: none;
     gap: 20px;
+}
+
+#rightImg {
+    width: 150px
 }
 
 button {
