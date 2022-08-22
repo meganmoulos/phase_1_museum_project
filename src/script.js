@@ -28,6 +28,7 @@ function rightMenu(artwork){
     console.log(imageId)
 }
 
+
 // Fetchers
 function getData(url){
     return fetch(url)

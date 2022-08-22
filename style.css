@@ -1,18 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 body {
-    background-color: #F4EFEC;
     margin-left: 50px;
     margin-right: 50px;
+
 }
 
 #mainContainer {
+    background-color: #F4EFEC;
     display: flex;
     flex-direction: column;
+    font-family: 'Inter';
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     margin: 50px;
+}
+
+#logo {
+    font-size: 30px;
 }
 
 #centralArea {
@@ -22,6 +30,14 @@ nav {
 
 #leftContainer {
     width: 60vw;
+}
+
+#artistName {
+    font-weight: bold;
+}
+
+#artworkTitle {
+    font-style: italic;
 }
 
 #rightContainer {
@@ -35,10 +51,6 @@ nav {
     gap: 20px;
     margin: 50px;
 }
-
-/* #listItem {
-
-} */
 
 button {
     background-color: #92997C;
