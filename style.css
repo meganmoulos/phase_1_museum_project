@@ -1,5 +1,7 @@
 body {
     background-color: #F4EFEC;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 #mainContainer {
@@ -10,15 +12,33 @@ body {
 nav {
     display: flex;
     justify-content: space-between;
+    margin: 50px;
+}
+
+#centralArea {
+    display: flex;
+    justify-content: center;
 }
 
 #leftContainer {
-    width: 40vw;
+    width: 60vw;
 }
 
 #rightContainer {
     width: 20vw;
 }
+
+#rightMenuList {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 20px;
+    margin: 50px;
+}
+
+/* #listItem {
+
+} */
 
 button {
     background-color: #92997C;

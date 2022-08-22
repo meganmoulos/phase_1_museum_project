@@ -1,5 +1,5 @@
 // Globals
-const url = 'https://api.artic.edu/api/v1/artworks/'
+const url = 'https://api.artic.edu/api/v1/artworks/?page=2&limit=50'
 
 // DOM Selectors
 const largeImg = document.querySelector('#largeImage')
@@ -12,9 +12,7 @@ const thirdRightImage = document.querySelector('#thirdRightImage')
 // Render Functions
 function renderAnArtwork(artwork){
     largeImg.src = `https://www.artic.edu/iiif/2/${artwork.image_id}/full/400,/0/default.jpg`
-    console.log(largeImg.src)
 }
-
 
 function iterateItems(data){
     data.forEach(item => {
@@ -24,9 +22,10 @@ function iterateItems(data){
 
 function rightMenu(artwork){
     let imageId = artwork.image_id
-    firstRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`
-    secondRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`
-    thirdRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`
+    firstRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/200,/0/default.jpg`
+    secondRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/200,/0/default.jpg`
+    thirdRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/200,/0/default.jpg`
+    console.log(imageId)
 }
 
 // Fetchers
