@@ -1,5 +1,5 @@
 // Globals
-const url = 'https://api.artic.edu/api/v1/artworks/?page=2&limit=50'
+const url = 'https://api.artic.edu/api/v1/artworks/?page=3&limit=50'
 
 // DOM Selectors
 const largeImg = document.querySelector('#largeImage')
@@ -8,25 +8,43 @@ const secondRightImage = document.querySelector('#secondRightImage')
 const thirdRightImage = document.querySelector('#thirdRightImage')
 
 // Event Listeners
+firstRightImage.addEventListener('click', renderAnArtwork);
 
 // Render Functions
 function renderAnArtwork(artwork){
-    largeImg.src = `https://www.artic.edu/iiif/2/${artwork.image_id}/full/400,/0/default.jpg`
+    console.log(artwork)
+    console.log(artwork.image_id)
+    let imgId = artwork.image_id
+    largeImg.src = `https://www.artic.edu/iiif/2/${imgId}/full/400,/0/default.jpg`
+    artistName.textContent = artwork.artist_title
+    artworkTitle.textContent = artwork.title
+    artworkDescription.textContent = artwork.thumbnail['alt_text']
 }
 
 function iterateItems(data){
-    data.forEach(item => {
-        rightMenu(item)
-    })
+    let firstImage = data[1]
+    let secondImage = data[2]
+    let thirdImage = data[3]
+    rightMenu(firstImage, secondImage, thirdImage)
 }
 
-function rightMenu(artwork){
-    let imageId = artwork.image_id
-    firstRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/200,/0/default.jpg`
-    secondRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/200,/0/default.jpg`
-    thirdRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/200,/0/default.jpg`
-    console.log(imageId)
+function rightMenu(artwork, artwork2, artwork3){
+    let imageId1 = artwork.image_id
+    let imageId2 = artwork2.image_id
+    let imageId3 = artwork3.image_id
+    firstRightImage.src = `https://www.artic.edu/iiif/2/${imageId1}/full/200,/0/default.jpg`
+    secondRightImage.src = `https://www.artic.edu/iiif/2/${imageId2}/full/200,/0/default.jpg`
+    thirdRightImage.src = `https://www.artic.edu/iiif/2/${imageId3}/full/200,/0/default.jpg`
 }
+
+// function changeDisplay(artwork){
+//     largeImage.src = artwork
+// }
+
+// function to display details on the left
+// function to add selected artwork to cart
+// function to favorite selected artwork
+// function to search
 
 
 // Fetchers
@@ -35,7 +53,6 @@ function getData(url){
     .then(res => res.json())
     .then(artworkData => 
         {
-            console.log(artworkData)
             renderAnArtwork(artworkData.data[0])
             iterateItems(artworkData.data)
         })
