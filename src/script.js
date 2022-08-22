@@ -1,47 +1,52 @@
 // Globals
-const url = 'https://api.artic.edu/api/v1/artworks/?page=3&limit=12'
+const url = 'https://api.artic.edu/api/v1/artworks/?page=3&limit=4'
+let selectedArtwork;
 
 // DOM Selectors
 const largeImg = document.querySelector('#largeImage')
-const firstRightImage = document.querySelector('#firstRightImage')
-const secondRightImage = document.querySelector('#secondRightImage')
-const thirdRightImage = document.querySelector('#thirdRightImage')
+const unorderedList = document.querySelector('#rightMenuList')
 
 // Event Listeners
-firstRightImage.addEventListener('click', renderAnArtwork);
+
 
 // Render Functions
 function renderAnArtwork(artwork){
     console.log(artwork)
-    let imgId = artwork.image_id
-    largeImg.src = `https://www.artic.edu/iiif/2/${imgId}/full/400,/0/default.jpg`
+    selectedArtwork = artwork
+    largeImg.src = getImageSource(artwork.image_id)
     artistName.textContent = artwork.artist_title
     artworkTitle.textContent = artwork.title
-    artworkDescription.textContent = artwork.thumbnail['alt_text']
+    artworkDescription.textContent = artwork.credit_line
+}
+
+function renderRightImage(artwork){
+    console.log(artwork)
+    selectedArtwork = artwork
+    const newLi = document.createElement('li')
+    const newImg = document.createElement('img')
+    newImg.src = getImageSource(artwork.image_id)
+    newLi.appendChild(newImg)
+    newLi.onclick = () => {
+        renderAnArtwork(artwork);
+    }
+    unorderedList.appendChild(newLi)
 }
 
 function iterateItems(data){
-    let firstImage = data[1]
-    let secondImage = data[2]
-    let thirdImage = data[3]
-    rightMenu(firstImage, secondImage, thirdImage)
+    data.forEach(artworkObj => renderRightImage(artworkObj))
 }
 
-function rightMenu(artwork, artwork2, artwork3){
-    let imageId1 = artwork.image_id
-    let imageId2 = artwork2.image_id
-    let imageId3 = artwork3.image_id
-    firstRightImage.src = `https://www.artic.edu/iiif/2/${imageId1}/full/200,/0/default.jpg`
-    secondRightImage.src = `https://www.artic.edu/iiif/2/${imageId2}/full/200,/0/default.jpg`
-    thirdRightImage.src = `https://www.artic.edu/iiif/2/${imageId3}/full/200,/0/default.jpg`
+function getImageSource(imgId){
+    return `https://www.artic.edu/iiif/2/${imgId}/full/400,/0/default.jpg`
 }
 
+function changeImage() {
+    renderAnArtwork(selectedArtwork)
+}
 
-// function to display details on the left
 // function to add selected artwork to cart
 // function to favorite selected artwork
 // function to search
-
 
 // Fetchers
 function getData(url){
@@ -49,10 +54,9 @@ function getData(url){
     .then(res => res.json())
     .then(artworkData => 
         {
-            renderAnArtwork(artworkData.data[0])
             iterateItems(artworkData.data)
+            renderAnArtwork(artworkData.data[0]) 
         })
 }
 
 getData(url)
-
