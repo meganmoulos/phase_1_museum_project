@@ -23,7 +23,10 @@ function iterateItems(data){
 }
 
 function rightMenu(artwork){
-    firstRightImage.src = `https://www.artic.edu/iiif/2/${artwork.image_id}/full/400,/0/default.jpg`
+    let imageId = artwork.image_id
+    firstRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`
+    secondRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`
+    thirdRightImage.src = `https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`
 }
 
 // Fetchers

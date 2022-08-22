@@ -1,5 +1,8 @@
 body {
     background-color: #F4EFEC;
+}
+
+#mainContainer {
     display: flex;
     flex-direction: column;
 }
