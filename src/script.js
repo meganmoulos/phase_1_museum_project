@@ -1,5 +1,8 @@
 // Globals
-const url = 'https://api.artic.edu/api/v1/artworks/?page=3&limit=3'
+let pageNum = 3
+let nextUrl;
+let prevUrl;
+const url = `https://api.artic.edu/api/v1/artworks/?page=${pageNum}&limit=3`
 let selectedArtwork;
 
 // DOM Selectors
@@ -12,12 +15,17 @@ const contactMenuItem = document.querySelector('#contact')
 const aboutCard = document.querySelector('#aboutCard')
 const contactCard = document.querySelector('#contactCard')
 const addToCartBtn = document.querySelector('#cartButton')
+const cartSuccess = document.querySelector('#cartSuccess')
+const nextPage = document.querySelector('#nextPage')
+const prevPage = document.querySelector('#previousPage')
 
 // Event Listeners
 favoriteButton.addEventListener('click', changeFavorite)
 aboutMenuItem.addEventListener('click', function() {aboutCard.style.display = '';})
 contactMenuItem.addEventListener('click', function() {contactCard.style.display = '';})
 addToCartBtn.addEventListener('click', addArtworkToCart)
+nextPage.addEventListener('click', populateNextPage)
+prevPage.addEventListener('click', populatePrevPage)
 
 // Render Functions
 function renderAnArtwork(artwork){
@@ -37,15 +45,18 @@ function renderRightImage(artwork){
     const newLi = document.createElement('li')
     const newImg = document.createElement('img')
     newImg.src = getImageSource(artwork.image_id)
-    newImg.setAttribute('id', 'rightImg')
-    newLi.appendChild(newImg)
-    newLi.onclick = () => {
-        renderAnArtwork(artwork);
-    }
-    unorderedList.appendChild(newLi)
+    if (artwork.image_id !== null){
+        newImg.setAttribute('id', 'rightImg')
+        newLi.appendChild(newImg)
+        newLi.onclick = () => {
+            renderAnArtwork(artwork);
+        }
+        unorderedList.append(newLi)
+        }
 }
 
 function iterateItems(data){
+    unorderedList.innerHTML = ''
     data.forEach(artworkObj => renderRightImage(artworkObj))
 }
 
@@ -65,14 +76,24 @@ function changeFavorite(e){
 function addArtworkToCart(e){
     e.target.style.background = 'green'
     e.target.style.color = 'white'
-    let successMessage = document.createElement('h5')
-    successMessage.textContent = 'Added to Cart!' 
-    leftContainer.appendChild(successMessage)
+    cartSuccess.style.opacity = 0
+    cartSuccess.style = 'transition: opacity .5s linear;'
 }
 
-// function to add selected artwork to cart
-// function to favorite selected artwork
-// function to search
+function removeCartAlert(){
+    cartSuccess.style.opacity = 0
+}
+
+// Only works for one
+setTimeout(removeCartAlert, 3000)
+
+function populateNextPage(){
+    getData(nextUrl)
+}
+
+function populatePrevPage(){
+    getData(prevUrl)
+}
 
 // Fetchers
 function getData(url){
@@ -80,9 +101,13 @@ function getData(url){
     .then(res => res.json())
     .then(artworkData => 
         {
+            prevUrl = artworkData.pagination.prev_url
+            nextUrl = artworkData.pagination.next_url
             iterateItems(artworkData.data)
             renderAnArtwork(artworkData.data[0]) 
         })
 }
 
 getData(url)
+
+// Conditional for null images
