@@ -109,7 +109,6 @@ function searchList(e){
     for (let i = 0; i < searchData.length; i++){
         let searchItem = searchData[i].artwork_type_title
         if (searchItem.toUpperCase() === inputTextUpper){
-            console.log('contains')
             let itemName = document.createElement('p')
             itemName.textContent = `${searchData[i].title}`
             rightNavBar.append(itemName)
@@ -117,6 +116,7 @@ function searchList(e){
             console.log('not found')
         }
     }
+    form.reset() 
 }
 
 // Fetchers
