@@ -8,11 +8,14 @@ const unorderedList = document.querySelector('#rightMenuList')
 const leftContainer = document.querySelector('#leftContainer')
 const favoriteButton = document.querySelector('#favoriteButton')
 const aboutMenuItem = document.querySelector('#about')
+const contactMenuItem = document.querySelector('#contact')
 const aboutCard = document.querySelector('#aboutCard')
+const contactCard = document.querySelector('#contactCard')
 
 // Event Listeners
 favoriteButton.addEventListener('click', changeFavorite)
 aboutMenuItem.addEventListener('click', function() {aboutCard.style.display = '';})
+contactMenuItem.addEventListener('click', function() {contactCard.style.display = '';})
 
 // Render Functions
 function renderAnArtwork(artwork){
