@@ -6,9 +6,13 @@ let selectedArtwork;
 const largeImg = document.querySelector('#largeImage')
 const unorderedList = document.querySelector('#rightMenuList')
 const leftContainer = document.querySelector('#leftContainer')
+const favoriteButton = document.querySelector('#favoriteButton')
+const aboutMenuItem = document.querySelector('#about')
+const aboutCard = document.querySelector('#aboutCard')
 
 // Event Listeners
-
+favoriteButton.addEventListener('click', changeFavorite)
+aboutMenuItem.addEventListener('click', function() {aboutCard.style.display = '';})
 
 // Render Functions
 function renderAnArtwork(artwork){
@@ -17,10 +21,8 @@ function renderAnArtwork(artwork){
     artistName.textContent = artwork.artist_title
     artworkTitle.textContent = artwork.title
     artworkDescription.textContent = artwork.credit_line
-    let faveButton = document.createElement('button')
-    faveButton.textContent = 'Favorite'
-    leftContainer.appendChild(faveButton)
-    faveButton.addEventListener('click', changeFavorite)
+    favoriteButton.style.background = ''
+    favoriteButton.style.color = ''
 }
 
 function renderRightImage(artwork){
@@ -52,6 +54,7 @@ function changeFavorite(e){
     e.target.style.background = 'red'
     e.target.style.color = 'white'
 }
+
 
 // function to add selected artwork to cart
 // function to favorite selected artwork

@@ -16,25 +16,53 @@
 <body>
     <div id="mainContainer">
         <header>
-            <nav>
-                <div id="navLeft">
-                    <h1 id="logo">KHALOS TREASURY</h1>
+            <nav class="navbar" style="background-color: #F4EFEC;">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">Khalos Treasury</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Khalos Treasury</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                          <p id="about" class="nav-link active">About</p>
+                        </li>
+                        <li class="nav-item">
+                          <p class="nav-link">Contact</p>
+                        </li>
+                      </ul>
+                      <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                      </form>
+                    </div>
+                  </div>
                 </div>
-                <div id="navRight">
-                    <p>Search</p>
-                    <button>Log In</button>
-                    
-                </div>
-            </nav>
+              </nav>
         </header>
+
+        <div id='aboutCard' style="display: none" class="card">
+            <h5 class="card-header">About Us</h5>
+            <div class="card-body">
+              <h5 class="card-title">Megan Moulos & Leela Khadka</h5>
+              <p class="card-text">Created during Phase 1 of our time at Flatiron School</p>
+              <a href="https://api.artic.edu/docs/" class="btn btn-primary">See API Documentation</a>
+            </div>
+        </div>
+
         <div id="centralArea">
             <div id="leftContainer">
                 <img id = "largeImage" src="" alt="">
                 <p id = "artistName">Artist</p>
-                <p id = "artworkTitle" >Title of work</p>
+                <p id = "artworkTitle">Title of work</p>
                 <p id = "artworkDescription">Description</p>
-                <button id = "cartButton">Add to Cart</button>
-                <!-- <button id = "favoriteButton">Favorite</button> -->
+                <button type="button" class="btn btn-primary" id = "cartButton">Add to Cart</button>
+                <button type="button" class="btn btn-outline-primary" id = "favoriteButton">Favorite</button>
             </div>
             <div id="rightContainer">
                 <ul id="rightMenuList">

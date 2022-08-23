@@ -7,23 +7,15 @@
     font-family: 'Inter';
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    margin: 50px;
-}
-
-#logo {
-    font-size: 30px;
-}
-
 #centralArea {
     display: flex;
     justify-content: center;
+    padding-top: 40px;
 }
 
 #artistName {
     font-weight: bold;
+    padding-top: 10px;
 }
 
 #artworkTitle {
