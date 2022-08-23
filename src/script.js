@@ -3,6 +3,8 @@ let pageNum = 3
 let nextUrl;
 let prevUrl;
 const url = `https://api.artic.edu/api/v1/artworks/?page=${pageNum}&limit=3`
+const fullUrl = 'https://api.artic.edu/api/v1/artworks?page=1&limit=100'
+let searchData;
 let selectedArtwork;
 
 // DOM Selectors
@@ -18,6 +20,8 @@ const addToCartBtn = document.querySelector('#cartButton')
 const cartSuccess = document.querySelector('#cartSuccess')
 const nextPage = document.querySelector('#nextPage')
 const prevPage = document.querySelector('#previousPage')
+const form = document.querySelector('#searchForm')
+const rightNavBar = document.querySelector('#offcanvasNavbar')
 
 // Event Listeners
 favoriteButton.addEventListener('click', changeFavorite)
@@ -26,6 +30,7 @@ contactMenuItem.addEventListener('click', function() {contactCard.style.display 
 addToCartBtn.addEventListener('click', addArtworkToCart)
 nextPage.addEventListener('click', populateNextPage)
 prevPage.addEventListener('click', populatePrevPage)
+form.addEventListener('submit', searchList)
 
 // Render Functions
 function renderAnArtwork(artwork){
@@ -84,6 +89,7 @@ function removeCartAlert(){
     cartSuccess.style.opacity = 0
 }
 
+// Get help here
 // Only works for one
 setTimeout(removeCartAlert, 3000)
 
@@ -95,12 +101,31 @@ function populatePrevPage(){
     getData(prevUrl)
 }
 
+function searchList(e){
+    e.preventDefault()
+    let inputText = e.target[0].value
+    let inputTextUpper = inputText.toUpperCase()
+
+    for (let i = 0; i < searchData.length; i++){
+        let searchItem = searchData[i].artwork_type_title
+        if (searchItem.toUpperCase() === inputTextUpper){
+            console.log('contains')
+            let itemName = document.createElement('p')
+            itemName.textContent = `${searchData[i].title}`
+            rightNavBar.append(itemName)
+        } else {
+            console.log('not found')
+        }
+    }
+}
+
 // Fetchers
 function getData(url){
     return fetch(url)
     .then(res => res.json())
     .then(artworkData => 
         {
+            console.log(artworkData)
             prevUrl = artworkData.pagination.prev_url
             nextUrl = artworkData.pagination.next_url
             iterateItems(artworkData.data)
@@ -108,6 +133,13 @@ function getData(url){
         })
 }
 
-getData(url)
+function getLargeListData(fullUrl){
+    return fetch(fullUrl)
+    .then(res => res.json())
+    .then(listData => {
+        searchData = listData.data
+    })
+}
 
-// Conditional for null images
+getData(url)
+getLargeListData(fullUrl)
