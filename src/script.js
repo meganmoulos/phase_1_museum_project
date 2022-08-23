@@ -1,5 +1,5 @@
 // Globals
-const url = 'https://api.artic.edu/api/v1/artworks/?page=2&limit=3'
+const url = 'https://api.artic.edu/api/v1/artworks/?page=3&limit=3'
 let selectedArtwork;
 
 // DOM Selectors
@@ -11,11 +11,13 @@ const aboutMenuItem = document.querySelector('#about')
 const contactMenuItem = document.querySelector('#contact')
 const aboutCard = document.querySelector('#aboutCard')
 const contactCard = document.querySelector('#contactCard')
+const addToCartBtn = document.querySelector('#cartButton')
 
 // Event Listeners
 favoriteButton.addEventListener('click', changeFavorite)
 aboutMenuItem.addEventListener('click', function() {aboutCard.style.display = '';})
 contactMenuItem.addEventListener('click', function() {contactCard.style.display = '';})
+addToCartBtn.addEventListener('click', addArtworkToCart)
 
 // Render Functions
 function renderAnArtwork(artwork){
@@ -26,6 +28,8 @@ function renderAnArtwork(artwork){
     artworkDescription.textContent = artwork.credit_line
     favoriteButton.style.background = ''
     favoriteButton.style.color = ''
+    addToCartBtn.style.background = ''
+    addToCartBtn.style.color = ''
 }
 
 function renderRightImage(artwork){
@@ -58,6 +62,13 @@ function changeFavorite(e){
     e.target.style.color = 'white'
 }
 
+function addArtworkToCart(e){
+    e.target.style.background = 'green'
+    e.target.style.color = 'white'
+    let successMessage = document.createElement('h5')
+    successMessage.textContent = 'Added to Cart!' 
+    leftContainer.appendChild(successMessage)
+}
 
 // function to add selected artwork to cart
 // function to favorite selected artwork
