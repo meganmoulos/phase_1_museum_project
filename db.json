@@ -1,14 +1,16 @@
 {
-  "users": [
+  "user": [
     {
       "id": 1,
-      "name": "User 1",
-      "favorites": []
+      "favorites": "Two Girls in a Garden"
     },
     {
-      "id": 2,
-      "name": "User 1",
-      "favorites": []
+      "favorites": "Mountain Road with Travelers",
+      "id": 2
+    },
+    {
+      "favorites": "The Capture of Samson",
+      "id": 3
     }
   ]
 }

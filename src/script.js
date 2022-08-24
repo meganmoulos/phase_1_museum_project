@@ -21,6 +21,8 @@ const contactMenuItem = document.querySelector('#contact')
 const favoritesMenuItem = document.querySelector('#favorites')
 const aboutCard = document.querySelector('#aboutCard')
 const contactCard = document.querySelector('#contactCard')
+const favoritesCard = document.querySelector('#favoritesCard')
+const favoritesList = document.querySelector('#favoritesList')
 const addToCartBtn = document.querySelector('#cartButton')
 const cartSuccess = document.querySelector('#cartSuccess')
 const nextPage = document.querySelector('#nextPage')
@@ -127,8 +129,13 @@ function searchList(e){
     form.reset() 
 }
 
-function renderUserFavorites(){
-    
+function renderUserFavorites(data){
+    for (let i = 0; i < data.length; i++){
+        let artworkTitle = data[i].favorites
+        let newLi = document.createElement('li')
+        newLi.textContent = artworkTitle
+        favoritesList.append(newLi)
+    }
 }
 
 // Fetchers
@@ -165,9 +172,9 @@ function saveUserFavorites(){
 }
 
 function getUserFavorites(){
-    fetch('http://localhost:3000/user')
+    return fetch('http://localhost:3000/user')
     .then(res => res.json())
-    .then(console.log)
+    .then(favoritesData => renderUserFavorites(favoritesData))
 }
 
 getData(url)

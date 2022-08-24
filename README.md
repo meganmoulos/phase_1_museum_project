@@ -1,1 +1,1 @@
-# phase_1_museum_project
+# Khalos Treasury - Phase 1 Project
