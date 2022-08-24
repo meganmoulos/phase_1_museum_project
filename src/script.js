@@ -179,5 +179,4 @@ function getUserFavorites(){
 
 getData(url)
 getLargeListData(fullUrl)
-
 getUserFavorites()
