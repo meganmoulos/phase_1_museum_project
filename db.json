@@ -15,6 +15,14 @@
     {
       "favorites": "Corrugated Vase",
       "id": 4
+    },
+    {
+      "favorites": "Rocking Armchair (model RAR)",
+      "id": 5
+    },
+    {
+      "cart": "Rocking Armchair (model RAR)",
+      "id": 6
     }
   ]
 }

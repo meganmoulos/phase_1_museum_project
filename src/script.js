@@ -6,10 +6,7 @@ const url = `https://api.artic.edu/api/v1/artworks/?page=${pageNum}&limit=3`
 const fullUrl = 'https://api.artic.edu/api/v1/artworks?page=1&limit=100'
 let searchData;
 let selectedArtwork;
-const userData = { 
-    "id": "1",
-    "favorites": [] 
-};
+
 
 // DOM Selectors
 const largeImg = document.querySelector('#largeImage')
@@ -84,7 +81,6 @@ function changeImage() {
 function changeFavorite(e){
     e.target.style.background = 'red'
     e.target.style.color = 'white'
-    console.log(selectedArtwork.title)
     saveUserFavorites(selectedArtwork)
 }
 
@@ -93,6 +89,7 @@ function addArtworkToCart(e){
     e.target.style.color = 'white'
     cartSuccess.style.opacity = 0
     cartSuccess.style = 'transition: opacity .5s linear;'
+    saveUserCart(selectedArtwork)
 }
 
 function removeCartAlert(){
@@ -167,6 +164,18 @@ function saveUserFavorites(){
         },
         body: JSON.stringify({
             'favorites': `${selectedArtwork.title}`
+        })
+    })
+}
+
+function saveUserCart(){
+    fetch('http://localhost:3000/user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'cart': `${selectedArtwork.title}`
         })
     })
 }
