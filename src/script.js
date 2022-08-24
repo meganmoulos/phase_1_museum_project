@@ -6,6 +6,10 @@ const url = `https://api.artic.edu/api/v1/artworks/?page=${pageNum}&limit=3`
 const fullUrl = 'https://api.artic.edu/api/v1/artworks?page=1&limit=100'
 let searchData;
 let selectedArtwork;
+const userData = { 
+    "id": "1",
+    "favorites": [] 
+};
 
 // DOM Selectors
 const largeImg = document.querySelector('#largeImage')
@@ -14,6 +18,7 @@ const leftContainer = document.querySelector('#leftContainer')
 const favoriteButton = document.querySelector('#favoriteButton')
 const aboutMenuItem = document.querySelector('#about')
 const contactMenuItem = document.querySelector('#contact')
+const favoritesMenuItem = document.querySelector('#favorites')
 const aboutCard = document.querySelector('#aboutCard')
 const contactCard = document.querySelector('#contactCard')
 const addToCartBtn = document.querySelector('#cartButton')
@@ -27,6 +32,7 @@ const rightNavBar = document.querySelector('#offcanvasNavbar')
 favoriteButton.addEventListener('click', changeFavorite)
 aboutMenuItem.addEventListener('click', function() {aboutCard.style.display = '';})
 contactMenuItem.addEventListener('click', function() {contactCard.style.display = '';})
+favoritesMenuItem.addEventListener('click', function() {favoritesCard.style.display = '';})
 addToCartBtn.addEventListener('click', addArtworkToCart)
 nextPage.addEventListener('click', populateNextPage)
 prevPage.addEventListener('click', populatePrevPage)
@@ -76,6 +82,8 @@ function changeImage() {
 function changeFavorite(e){
     e.target.style.background = 'red'
     e.target.style.color = 'white'
+    console.log(selectedArtwork.title)
+    saveUserFavorites(selectedArtwork)
 }
 
 function addArtworkToCart(e){
@@ -119,13 +127,16 @@ function searchList(e){
     form.reset() 
 }
 
+function renderUserFavorites(){
+    
+}
+
 // Fetchers
 function getData(url){
     return fetch(url)
     .then(res => res.json())
     .then(artworkData => 
         {
-            console.log(artworkData)
             prevUrl = artworkData.pagination.prev_url
             nextUrl = artworkData.pagination.next_url
             iterateItems(artworkData.data)
@@ -141,5 +152,25 @@ function getLargeListData(fullUrl){
     })
 }
 
+function saveUserFavorites(){
+    fetch('http://localhost:3000/user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'favorites': `${selectedArtwork.title}`
+        })
+    })
+}
+
+function getUserFavorites(){
+    fetch('http://localhost:3000/user')
+    .then(res => res.json())
+    .then(console.log)
+}
+
 getData(url)
 getLargeListData(fullUrl)
+
+getUserFavorites()
