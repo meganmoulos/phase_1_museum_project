@@ -13,16 +13,20 @@
       "id": 3
     },
     {
-      "favorites": "The Adoration of the Eucharist",
+      "favorites": "Jacques and Berthe Lipchitz",
       "id": 4
     },
     {
-      "favorites": "City Landscape",
+      "favorites": "Scarlett Hooft Graafland, Shores Like You",
       "id": 5
     },
     {
-      "cart": "King Solomon Receiving the Queen of Sheba",
+      "favorites": "Seated Figure",
       "id": 6
+    },
+    {
+      "favorites": "New Realities: Photography in the 19th Century",
+      "id": 7
     }
   ]
 }

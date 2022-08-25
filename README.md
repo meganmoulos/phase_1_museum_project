@@ -6,7 +6,11 @@ Khalos Treasury is a single page application (SPA) which uses a free API from th
 
 ![alt text](assets/loadingPage.png)
 
-A user can browse the Art Institute of Chicago's collection of images. They can save their favorite pieces to a favorites list. There is also an option to buy a print of an artwork with the Add to Cart feature. 
+### Features
+
+- Users can browse the Art Institute of Chicago's vast collection of images.
+- Users can save their favorite pieces to a favorites list. 
+- There is also an option to buy a print of an artwork with the Add to Cart feature. 
 
 
 ### Creators
