@@ -98,13 +98,15 @@ function removeCartAlert(){
 
 // Get help here
 // Only works for one
-setTimeout(removeCartAlert, 3000)
+// setTimeout(removeCartAlert, 3000)
 
-function populateNextPage(){
+function populateNextPage(e){
+    e.preventDefault()
     getData(nextUrl)
 }
 
-function populatePrevPage(){
+function populatePrevPage(e){
+    e.preventDefault()
     getData(prevUrl)
 }
 
@@ -144,7 +146,12 @@ function getData(url){
             prevUrl = artworkData.pagination.prev_url
             nextUrl = artworkData.pagination.next_url
             iterateItems(artworkData.data)
-            renderAnArtwork(artworkData.data[0]) 
+            for (const element of artworkData.data){
+                if(element.image_id !== null){
+                    renderAnArtwork(element)
+                    break 
+                }
+            }
         })
 }
 
