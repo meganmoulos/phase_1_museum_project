@@ -87,14 +87,14 @@ function changeFavorite(e){
 function addArtworkToCart(e){
     e.target.style.background = 'green'
     e.target.style.color = 'white'
-    cartSuccess.style.opacity = 0
-    cartSuccess.style = 'transition: opacity .5s linear;'
+    // cartSuccess.style.opacity = 0
+    // cartSuccess.style = 'transition: opacity .5s linear;'
     saveUserCart(selectedArtwork)
 }
 
-function removeCartAlert(){
-    cartSuccess.style.opacity = 0
-}
+// function removeCartAlert(){
+//     cartSuccess.style.opacity = 0
+// }
 
 // Get help here
 // Only works for one
