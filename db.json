@@ -1,14 +1,32 @@
 {
-  "users": [
+  "user": [
     {
-      "id": 1,
-      "name": "User 1",
-      "favorites": []
+      "favorites": "Two Girls in a Garden",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "User 1",
-      "favorites": []
+      "favorites": "Mountain Road with Travelers",
+      "id": 2
+    },
+    {
+      "favorites": "The Capture of Samson",
+      "id": 3
+    },
+    {
+      "favorites": "Jacques and Berthe Lipchitz",
+      "id": 4
+    },
+    {
+      "favorites": "Scarlett Hooft Graafland, Shores Like You",
+      "id": 5
+    },
+    {
+      "favorites": "Seated Figure",
+      "id": 6
+    },
+    {
+      "favorites": "New Realities: Photography in the 19th Century",
+      "id": 7
     }
   ]
 }
